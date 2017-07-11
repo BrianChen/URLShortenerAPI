@@ -1,5 +1,6 @@
 class ShortenedUrl < ActiveRecord::Base
-  validates :original_url, :slug, presence: true, uniqueness: true
+  validates :original_url, :visits, presence: true
+  validates :slug, uniqueness: true, presence: true
 
   def self.create_shortened_url(original_url, slug = ShortenedUrl.generate_slug)
     ShortenedUrl.create(
@@ -13,9 +14,5 @@ class ShortenedUrl < ActiveRecord::Base
       slug = SecureRandom.urlsafe_base64(6)
       return slug if !ShortenedUrl.exists?(slug: slug)
     end
-  end
-
-  def self.parse_long_url
-
   end
 end
