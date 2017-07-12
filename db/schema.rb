@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711191401) do
+ActiveRecord::Schema.define(version: 20170711225149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,8 +20,13 @@ ActiveRecord::Schema.define(version: 20170711191401) do
     t.string   "slug",         null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["original_url"], name: "index_shortened_urls_on_original_url", unique: true, using: :btree
     t.index ["slug"], name: "index_shortened_urls_on_slug", unique: true, using: :btree
+  end
+
+  create_table "visits", force: :cascade do |t|
+    t.integer "shortened_url_id", null: false
+    t.date    "visited_date",     null: false
+    t.index ["shortened_url_id"], name: "index_visits_on_shortened_url_id", using: :btree
   end
 
 end

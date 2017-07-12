@@ -9,6 +9,7 @@ class Api::ShortenedUrlsController < ApplicationController
   def show
     @shortened_url = ShortenedUrl.find_by_slug(params[:slug])
     if @shortened_url
+      Visit.record_visit!(@shortened_url)
       redirect_to @shortened_url.original_url
     else
       render json: "Uh oh, couldn't find a link for the URL you clicked"
@@ -34,9 +35,4 @@ class Api::ShortenedUrlsController < ApplicationController
       end
     end
   end
-
-  # private
-  # def shortened_url_params
-  #   params.require(:shortened_url).permits(:long_url, :slug)
-  # end
 end
