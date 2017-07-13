@@ -18,7 +18,7 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'rails/all'
 require 'database_cleaner'
-require File.expand_path("../../config/environment", __FILE__)
+ENV["RAILS_ENV"] = 'test'
 RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
