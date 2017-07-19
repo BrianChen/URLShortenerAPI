@@ -97,4 +97,4 @@ This was definitely a fun project that I look to improve on. Future goals for th
 
 Things to keep in mind when scaling:
 Database schema (isolating original urls)
-User logins to have their own dashboard of their shortened urls
+User logins to have their own dashboard of their shortened urls (login for extra features)
